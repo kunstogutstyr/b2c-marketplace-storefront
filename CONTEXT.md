@@ -218,6 +218,8 @@ export const sdk = new Medusa({
 2. **Region-based routing** - Middleware mapper country codes til regions automatisk
 3. **Edge-compatible middleware** - Kan ikke bruke Medusa JS SDK i middleware (Edge runtime)
 4. **Cache strategy** - Region mapping caches i 1 time, bruker Next.js cache tags
+test
+
 
 ### Integrasjoner
 1. **Algolia** - Brukes for produktsøk og indeksering
