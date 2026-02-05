@@ -100,6 +100,15 @@ export const CategoryNavbar = ({
         >
           All Products
         </LocalizedClientLink>
+        <LocalizedClientLink
+          href="/alle-produkter"
+          onClick={handleClose}
+          className={cn(
+            "label-md uppercase px-2 my-1 md:my-0 flex items-center justify-between md:flex-shrink-0 text-primary"
+          )}
+        >
+          Alle produkter (uten Algolia)
+        </LocalizedClientLink>
 
         {filteredCategories.map(({ id, handle, name, category_children }) => {
           const categoryUrl = `/categories/${handle}`
