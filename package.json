@@ -12,7 +12,6 @@
     "@headlessui/react": "^2.2.1",
     "@hookform/resolvers": "^3.10.0",
     "@medusajs/js-sdk": "^2.2.0",
-    "@medusajs/types": "^2.13.1",
     "@medusajs/ui": "^4.0.7",
     "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.1.0",

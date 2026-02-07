@@ -8,7 +8,6 @@ import {
 } from "@/components/sections"
 
 import type { Metadata } from "next"
-import { HttpTypes } from "@medusajs/types"
 import { headers } from "next/headers"
 import Script from "next/script"
 import { listRegions } from "@/lib/data/regions"
@@ -33,9 +32,7 @@ export async function generateMetadata({
     const locales = Array.from(
       new Set(
         (regions || [])
-          .map((r: HttpTypes.StoreRegion) =>
-            r.countries?.map((c: { iso_2?: string }) => c.iso_2) || []
-          )
+          .map((r) => r.countries?.map((c) => c.iso_2) || [])
           .flat()
           .filter(Boolean)
       )
