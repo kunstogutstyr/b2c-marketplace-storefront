@@ -75,6 +75,11 @@ export async function generateMetadata({
         "x-default": baseUrl,
       },
     },
+    verification: {
+      other: {
+        "algolia-site-verification": process.env.NEXT_PUBLIC_ALGOLIA_SITE_VERIFICATION || "",
+      },
+    },
     openGraph: {
       title: `${title} | ${
         process.env.NEXT_PUBLIC_SITE_NAME ||
