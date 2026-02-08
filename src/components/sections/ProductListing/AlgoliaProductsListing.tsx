@@ -51,8 +51,8 @@ export const AlgoliaProductsListing = ({
           collection_id !== undefined
             ? ` AND collections.id:${collection_id}`
             : ""
-        } ${facetFilters}`
-      : ` ${facetFilters}`
+        }${facetFilters.trim() ? ` ${facetFilters.trim()}` : ""}`
+      : facetFilters.trim() ? ` ${facetFilters.trim()}` : ""
   }`
   return (
     <InstantSearchNext searchClient={client} indexName="products">
