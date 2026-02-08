@@ -41,14 +41,11 @@ export const AlgoliaProductsListing = ({
   const query: string = searchParams.get("query") || ""
   const page: number = +(searchParams.get("page") || 1)
 
-  // supported_countries må være i attributesForFaceting i Algolia index Configuration.
-  const localeFilter = (locale ?? "").trim()
-  const currencyFilter = (currency_code ?? "").trim().toLowerCase()
-  const baseFilter =
+  const filters = `${
     seller_handle
-      ? `NOT seller:null AND seller.handle:${seller_handle} AND supported_countries:${localeFilter} AND variants.prices.currency_code:${currencyFilter}`
-      : `NOT seller:null AND NOT seller.store_status:SUSPENDED AND supported_countries:${localeFilter} AND variants.prices.currency_code:${currencyFilter}`
-  const filters = `${baseFilter}${
+      ? `NOT seller:null AND seller.handle:${seller_handle} AND `
+      : "NOT seller:null AND "
+  }NOT seller.store_status:SUSPENDED AND supported_countries:${locale} AND variants.prices.currency_code:${currency_code}${
     category_id
       ? ` AND categories.id:${category_id}${
           collection_id !== undefined
