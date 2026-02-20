@@ -1,7 +1,11 @@
 import { HttpTypes } from '@medusajs/types';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { PROTECTED_ROUTES } from './lib/constants';
+import {
+  PROTECTED_ROUTES,
+  PUBLIC_ROUTES_WHEN_RESTRICTED,
+  SITE_RESTRICTED
+} from './lib/constants';
 import { isTokenExpired } from './lib/helpers/token';
 
 const BACKEND_URL = process.env.MEDUSA_BACKEND_URL;
@@ -123,6 +127,29 @@ export async function middleware(request: NextRequest) {
   const looksLikeLocale = /^[a-z]{2}$/i.test(urlSegment || '');
 
   const pathnameWithoutLocale = looksLikeLocale ? pathname.replace(/^\/[^/]+/, '') : pathname;
+
+  // Når SITE_RESTRICTED: hele siden krever innlogging unntatt login/register/forgot-password/reset-password
+  if (SITE_RESTRICTED) {
+    const isPublicAuthRoute = PUBLIC_ROUTES_WHEN_RESTRICTED.some(
+      route =>
+        pathnameWithoutLocale === route ||
+        pathnameWithoutLocale.startsWith(route + '/')
+    );
+
+    if (!isPublicAuthRoute) {
+      const jwtCookie = request.cookies.get('_medusa_jwt');
+      const token = jwtCookie?.value;
+      const locale = looksLikeLocale ? urlSegment! : DEFAULT_REGION;
+
+      if (!jwtCookie || (token && isTokenExpired(token))) {
+        return makeAuthRedirect(
+          request,
+          locale,
+          !jwtCookie ? 'sessionRequired' : 'sessionExpired'
+        );
+      }
+    }
+  }
 
   const isProtectedRoute = PROTECTED_ROUTES.some(route => pathnameWithoutLocale.startsWith(route));
 
