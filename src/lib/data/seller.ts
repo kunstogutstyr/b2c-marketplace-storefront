@@ -24,3 +24,20 @@ export const getSellerByHandle = async (handle: string) => {
     })
     .catch(() => []);
 };
+
+export const listSellerNames = async () => {
+  return sdk.client
+    .fetch<{ sellers?: { name?: string }[] }>('/store/seller', {
+      query: {
+        fields: 'name',
+        limit: 200
+      },
+      cache: 'no-cache'
+    })
+    .then(({ sellers }) =>
+      (sellers ?? [])
+        .map(seller => seller?.name?.trim())
+        .filter((name): name is string => Boolean(name))
+    )
+    .catch(() => [] as string[]);
+};

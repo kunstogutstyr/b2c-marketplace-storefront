@@ -11,6 +11,7 @@ import type { Metadata } from "next"
 import { headers } from "next/headers"
 import Script from "next/script"
 import { listRegions } from "@/lib/data/regions"
+import { listSellerNames } from "@/lib/data/seller"
 import { toHreflang } from "@/lib/helpers/hreflang"
 
 export async function generateMetadata({
@@ -126,6 +127,7 @@ export default async function Home({
   const siteName =
     process.env.NEXT_PUBLIC_SITE_NAME ||
     "Mercur B2C Demo - Marketplace Storefront"
+  const vendorNames = await listSellerNames()
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-primary">
@@ -167,7 +169,8 @@ export default async function Home({
 
       <Hero
         image="/images/hero/Image.jpg"
-        heading="Snag your style in a flash"
+        heading="ArtBy"
+        vendorNames={vendorNames}
         paragraph="Buy, sell, and discover pre-loved gems from the trendiest brands."
         buttons={[
           { label: "Buy now", path: "/categories" },
