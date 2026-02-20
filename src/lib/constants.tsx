@@ -68,14 +68,3 @@ export const noDivisionCurrencies = [
 ]
 
 export const PROTECTED_ROUTES = ['/user', '/user/wishlist', '/user/orders', '/user/settings', '/user/addresses', '/user/messages', '/user/reviews', '/user/returns']
-
-/** Når true (NEXT_PUBLIC_SITE_RESTRICTED=true): hele siden krever innlogging unntatt auth-sidene */
-export const SITE_RESTRICTED = process.env.NEXT_PUBLIC_SITE_RESTRICTED === 'true'
-
-/** Ruter som alltid er tilgjengelige uten innlogging når SITE_RESTRICTED er aktiv */
-export const PUBLIC_ROUTES_WHEN_RESTRICTED = [
-  '/login',
-  '/register',
-  '/user/forgot-password',
-  '/reset-password'
-]
