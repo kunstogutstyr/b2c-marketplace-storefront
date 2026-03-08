@@ -1,9 +1,15 @@
 import Image from "next/image"
+import { Sora } from "next/font/google"
 
 import tailwindConfig from "../../../../tailwind.config"
 import { ArrowRightIcon } from "@/icons"
 import Link from "next/link"
 import { HeroVendorTicker } from "./HeroVendorTicker"
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+})
 
 type HeroProps = {
   image: string
@@ -36,9 +42,9 @@ export const Hero = ({
       <div className="w-full lg:order-2">
         <div className="border rounded-sm w-full px-6 flex items-end h-[calc(100%-144px)]">
           <div>
-            <h2 className="font-bold mb-6 uppercase display-md max-w-[652px] text-4xl md:text-5xl leading-tight">
+            <h2 className="font-bold mb-6 display-md max-w-[652px] text-4xl md:text-5xl leading-tight">
               <span className="inline-flex flex-wrap items-baseline gap-y-1">
-                <span>{heading}</span>
+                <span className={sora.className}>{heading}</span>
                 <span className="mx-3 hidden sm:inline">|</span>
                 <HeroVendorTicker names={vendorNames} />
               </span>
