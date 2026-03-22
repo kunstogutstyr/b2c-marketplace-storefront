@@ -1,4 +1,5 @@
 import { Hero } from "./Hero/Hero"
+import { LoginChoiceHero } from "./Hero/LoginChoiceHero"
 import { HomeProductSection } from "./HomeProductSection/HomeProductSection"
 import { HomeCategories } from "./HomeCategories/HomeCategories"
 import { BannerSection } from "./BannerSection/BannerSection"
@@ -14,6 +15,7 @@ import { OrdersPagination } from "../organisms/OrdersPagination/OrdersPagination
 
 export {
   Hero,
+  LoginChoiceHero,
   HomeProductSection,
   HomeCategories,
   BannerSection,
