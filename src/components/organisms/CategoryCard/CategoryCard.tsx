@@ -45,9 +45,9 @@ export function CategoryCard({ category }: CategoryCardProps) {
   return (
     <LocalizedClientLink
       href={`/categories/${category.handle}`}
-      className="relative flex flex-col items-center border rounded-sm bg-component transition-all hover:rounded-full w-[233px] aspect-square"
+      className="relative flex flex-col items-center border rounded-sm bg-component transition-all hover:rounded-full w-full sm:w-[233px] sm:shrink-0 aspect-square"
     >
-      <div className="flex relative aspect-square overflow-hidden w-[200px] items-center justify-center">
+      <div className="flex relative aspect-square overflow-hidden w-full max-w-[200px] items-center justify-center">
         {hasImage ? (
           <Image
             loading="lazy"
