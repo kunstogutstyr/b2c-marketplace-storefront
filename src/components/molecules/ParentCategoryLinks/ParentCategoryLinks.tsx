@@ -35,7 +35,7 @@ export const ParentCategoryLinks = ({
             key={id}
             href={`/categories/${handle}`}
             className={cn(
-              "label-large uppercase text-primary hover:opacity-80 transition-opacity pb-2 font-semibold",
+              "label-large uppercase text-primary hover:opacity-80 transition-opacity pb-2 font-semibold whitespace-nowrap",
               isActive && "border-b border-primary"
             )}
           >
